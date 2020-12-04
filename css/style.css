@@ -1,0 +1,132 @@
+/* Variables */
+:root {
+  --main-bg-color: #1b998b;
+  --secondary-bg-color: #222435;
+  --primary-font-color: #fff;
+}
+
+body {
+  background: linear-gradient(
+    to top,
+    var(--main-bg-color),
+    var(--secondary-bg-color) 60%
+  );
+  color: var(--primary-font-color);
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Main Content Area  */
+#main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  transition: ease-in-out 0.3s;
+  background: transparent;
+}
+
+.main-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-around;
+  padding: 2rem 0;
+}
+
+.open #main {
+  left: 250px;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.459);
+  transition: ease-in-out 0.3s;
+  z-index: 1000;
+}
+
+.open .overlay {
+  display: block;
+}
+
+/* Side Nav */
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  transform: translateX(-100%);
+  transition: ease-in-out 0.3s;
+  overflow: hidden;
+}
+
+.open .side-nav {
+  transform: translateX(0);
+}
+
+/* Btn icons */
+.hamburger-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  z-index: 1000;
+  text-decoration: none;
+  color: var(--primary-font-color);
+}
+
+.close-icon,
+.plus-icon {
+  font-size: 1.5rem;
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  top: 1.42rem;
+}
+
+.close-icon {
+  right: 1rem;
+}
+
+.plus-icon {
+  left: 1rem;
+}
+
+.weather-icon-container {
+  width: 100%;
+  height: 30%;
+}
+
+.weather-icon {
+  object-fit: cover;
+  width: 75%;
+  max-width: 400px;
+  object-position: 0% 40%;
+}
+
+.weather-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border-top: 1px solid #ddd;
+  border-radius: 0;
+  color: #fff;
+}
