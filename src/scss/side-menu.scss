@@ -1,0 +1,74 @@
+
+// SIDE NAV AND ICON STYLES
+.side-nav {
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  bottom:0;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.164);
+  transform: translateX(-100%);
+  transition: ease-in-out 0.3s;
+  .close-icon {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    z-index: 1000;
+  }
+  .plus-icon{
+    position: absolute;
+    top: 0.8rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    z-index: 1000;
+  }
+  .list-group-item {
+    background-color: transparent;
+    color: white;
+    }
+  .active{
+    background-color: #0275d8;
+  }
+}
+
+// MAIN SECTION SIDE MENU ICONS AND OVERLAY
+.main {
+  .hamburger-icon {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: white;
+    z-index: 1000;
+  }
+  .overlay {
+    display: none;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    opacity: 0.6;
+    transition: ease-in-out 0.3s;
+  }
+}
+
+// STYLES FOR WHEN MENU IS OPEN 
+.open {
+  .side-nav {
+    transform: translateX(0);
+  }
+  .hamburger-icon {
+    display: none;
+  }
+  .main {
+    left: 250px;
+  }
+  .overlay {
+    display: block;
+  }
+}
