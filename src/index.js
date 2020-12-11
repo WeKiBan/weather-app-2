@@ -30,8 +30,6 @@ window.mySwipe = new Swipe(document.getElementById('slider'), {
   },
 });
 
-// on window resize re-initiate swipe
-window.addEventListener('resize', function () {});
 
 // even listener for navigation dots
 ui.pageNavigation.addEventListener('click', function (e) {
@@ -97,8 +95,11 @@ ui.locationsContainer.addEventListener('click', function (e) {
     // render the display
     weather.fetchWeather().then((data) => ui.renderWeather(data));
   }
+  // go back top first slide
+  window.mySwipe.prev();
   //close the side menu
   ui.openCloseSideMenu();
+  
 });
 
 // Event listener for autocomplete location
