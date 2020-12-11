@@ -1,0 +1,15 @@
+{
+  "background_color": "#F9A03F",
+  "description": "Simple Weather App",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "Bright Weather App",
+  "short_name": "Bright",
+  "start_url": "index.html"
+}
