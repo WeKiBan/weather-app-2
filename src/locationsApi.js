@@ -1,4 +1,4 @@
-class Places {
+class Location {
   constructor() {
     this.locationObject;
     this.placesAutocomplete = places({
@@ -15,4 +15,4 @@ class Places {
   }
 }
 
-export const locationApi = new Places();
+export const locationApi = new Location();
