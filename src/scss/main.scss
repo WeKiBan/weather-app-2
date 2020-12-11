@@ -1,10 +1,11 @@
 @import 'bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+//universal opacity class
 .opacity{
   opacity: 0.9;
 }
-
+// hide places icon
 .ap-icon-pin {
   display: none;
 }
@@ -45,7 +46,7 @@ body {
 
   .delete-icon{
     position: absolute;
-    top: 0.9rem;
+    top: 1.3rem;
     left: 1rem;
     font-size: 1.3rem;
     color: white;
