@@ -30,7 +30,6 @@ window.mySwipe = new Swipe(document.getElementById('slider'), {
   },
 });
 
-
 // even listener for navigation dots
 ui.pageNavigation.addEventListener('click', function (e) {
   // if dont has id of prev go to prev slide
@@ -99,7 +98,6 @@ ui.locationsContainer.addEventListener('click', function (e) {
   window.mySwipe.prev();
   //close the side menu
   ui.openCloseSideMenu();
-  
 });
 
 // Event listener for autocomplete location
@@ -142,6 +140,8 @@ ui.addLocationBtn.addEventListener('click', function () {
   ui.locationInput.value = '';
   // hide modal using jquery
   $('#newLocationModal').modal('hide');
+  // go back top first slide
+  window.mySwipe.prev();
   // close side menu
   ui.openCloseSideMenu();
   // clear location object info
