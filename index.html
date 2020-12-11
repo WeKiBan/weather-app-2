@@ -36,8 +36,8 @@
       </a>
       <!-- PAGE NAVIGATION DOTS -->
       <ol class="page-navigation">
-        <li class="active"></li>
-        <li></li>
+        <li id="prev" class="page-navigation-item active"></li>
+        <li id="next" class="page-navigation-item"></li>
       </ol>
       <!-- OVERLAY -->
       <div class="overlay"></div>
@@ -183,9 +183,10 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="location-input">Location</label>
-              <input class="form-control" id="location-input" type="text" placeholder="Enter Location">
-              <small class="form-text">Must be a valid location.</small>
+              <input class="form-control is-invalid" type="text" id="location-input" placeholder="Enter Location">
+              <div class="d-block">
+                Must Select Valid Location
+              </div>
             </div>
           </form>
         </div>
