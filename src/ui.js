@@ -11,6 +11,10 @@ class UI {
     this.mainSection = document.querySelector('.main');
     this.overlay = document.querySelector('.overlay');
 
+    //query selectors for page navigation
+    this.pageNavigationItems = Array.from(document.querySelectorAll('.page-navigation-item'));
+    this.pageNavigation = document.querySelector('.page-navigation');
+
     // Query selectors for page one of weather display
     this.date = document.querySelector('#date');
     this.location = document.querySelector('#location');
@@ -42,6 +46,10 @@ class UI {
   // FUNCTION TO CLEAR ELEMENT
   clearElement(element) {
     element.innerHTML = '';
+  }
+  // FUNCTION TO HIDE AND SHOW ALERT
+  hideShowAlert(element) {
+    element.classList.toggle('is-invalid');
   }
   // FUNCTION TO RENDER SIDE MENU
   renderSideMenu() {
@@ -90,7 +98,7 @@ class UI {
     this.location.textContent = `${location.name}, ${location.country}`;
     // SET BACKGROUND IMAGE
     // get country name of location
-    const country = location.country.replace(/ /g,"_") + '_landscape';
+    const country = location.country.replace(/ /g, '_') + '_landscape';
     // set background
     this.setBackground(country);
     // RENDER ICON
@@ -131,6 +139,7 @@ class UI {
     }
 
     // SECOND PAGE OF RENDER
+    // set time 
     this.time.textContent = format(
       utcToZonedTime(
         fromUnixTime(weatherData.current.dt),
@@ -138,6 +147,7 @@ class UI {
       ),
       'p'
     );
+    // set various values in display
     this.wind.textContent = weatherData.current.wind_speed;
     this.humidity.textContent = weatherData.current.humidity;
     this.pressure.textContent = weatherData.current.pressure;

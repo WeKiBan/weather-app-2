@@ -19,6 +19,26 @@ document.addEventListener('DOMContentLoaded', async function () {
 window.mySwipe = new Swipe(document.getElementById('slider'), {
   startSlide: 0,
   continuous: false,
+  // callback function to change state of navigation dots
+  callback: function (index, elem, dir) {
+    // remove active class from both dots
+    ui.pageNavigationItems.forEach((item) => {
+      item.classList.remove('active');
+    });
+    // apply active class to appropriate dot
+    ui.pageNavigationItems[index].classList.add('active');
+  },
+});
+
+// even listener for navigation dots
+ui.pageNavigation.addEventListener('click', function (e) {
+  // if dont has id of prev go to prev slide
+  if (e.target.id === 'prev') {
+    window.mySwipe.prev();
+    // if next go to next slide
+  } else if (e.target.id === 'next') {
+    window.mySwipe.next();
+  }
 });
 
 // event listener to open and close side menu
@@ -68,16 +88,24 @@ locationApi.placesAutocomplete.on('change', (e) => {
 
 // Event Listener for add location btn in new location modal
 ui.addLocationBtn.addEventListener('click', function () {
+  // check if a location has been selected show alert and return
   if (!locationApi.locationObject) {
-    console.log('empty');
+    ui.hideShowAlert(ui.locationInput);
     return;
   }
+  // if yes add location and save local storage
   storage.addLocation(locationApi.locationObject);
-  storage.selectedLocationId = locationApi.locationObject.id;
   storage.saveToLocalStorage();
+  // set selected location id to id of new location
+  storage.selectedLocationId = locationApi.locationObject.id;
+  // re render the side menu to include new location
   ui.renderSideMenu();
+  // fetch weather data and render it to the display
   weather.fetchWeather().then((data) => ui.renderWeather(data));
+  // clear the inputs
   ui.locationInput.value = '';
+  // hide modal using jquery
   $('#newLocationModal').modal('hide');
+  // close side menu
   ui.openCloseSideMenu();
 });
