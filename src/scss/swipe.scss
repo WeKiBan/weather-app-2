@@ -3,10 +3,14 @@
   overflow: hidden;
   visibility: hidden;
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 .swipe-wrap {
   overflow: hidden;
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 .swipe-wrap > div {
   display: flex;

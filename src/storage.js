@@ -8,10 +8,12 @@ class Storage {
       localStorage.getItem(this.LOCAL_STORAGE_LIST_KEY)
     ) || [
       {
-        id: 1,
+        id: '1',
         name: 'London',
         country: 'United Kingdom',
         coordinates: { lng: '-0.1276474', lat: '51.5073219' },
+        url:
+          'https://images.unsplash.com/photo-1601168647992-0d43afde4b58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxODg1NzN8MHwxfHNlYXJjaHwxfHxMb25kb24tbGFuZHNjYXBlfGVufDB8MXx8&ixlib=rb-1.2.1&q=80&w=1080',
       },
     ];
     this.selectedLocationId =
@@ -26,7 +28,10 @@ class Storage {
       JSON.stringify(this.locations)
     );
 
-    localStorage.setItem(this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY, this.selectedLocationId);
+    localStorage.setItem(
+      this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY,
+      this.selectedLocationId
+    );
   }
   // Function to add new location
   addLocation(location) {
@@ -39,6 +44,11 @@ class Storage {
       (location) => location.id == this.selectedLocationId
     );
     return location;
+  }
+  deleteLocation() {
+    this.locations = this.locations.filter(
+      (location) => location.id !== this.selectedLocationId
+    );
   }
 }
 

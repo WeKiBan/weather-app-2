@@ -15,8 +15,11 @@ class Background {
         perPage: 1,
         orientation: 'portrait',
       })
-      return response;
+
+      return response.response.results[0].urls.regular;
   }
+
 }
 
 export const background = new Background();
+ 

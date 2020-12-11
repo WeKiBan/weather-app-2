@@ -7,14 +7,12 @@ class Places {
       container: document.querySelector('#location-input'),
     });
   }
-  setLocationObject(location){
+  setLocationObject(location) {
     this.locationObject = location;
   }
-  clearLocationObject(){
+  clearLocationObject() {
     this.locationObject = '';
   }
 }
 
 export const locationApi = new Places();
-
-

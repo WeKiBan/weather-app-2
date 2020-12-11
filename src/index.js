@@ -30,6 +30,9 @@ window.mySwipe = new Swipe(document.getElementById('slider'), {
   },
 });
 
+// on window resize re-initiate swipe
+window.addEventListener('resize', function () {});
+
 // even listener for navigation dots
 ui.pageNavigation.addEventListener('click', function (e) {
   // if dont has id of prev go to prev slide
@@ -56,6 +59,29 @@ ui.overlay.addEventListener('click', function () {
   ui.openCloseSideMenu();
 });
 
+// even listener to confirm delete of location
+ui.confirmDeleteBtn.addEventListener('click', function () {
+  // call delete function
+  storage.deleteLocation();
+  // set selected id to 1
+  storage.selectedLocationId = '1';
+  //save
+  storage.saveToLocalStorage();
+  // render side menu and weather
+  weather.fetchWeather().then((data) => ui.renderWeather(data));
+  ui.renderSideMenu();
+  // close modal
+  $('#deleteLocationModal').modal('hide');
+});
+
+// if plus icon is pressed to open modal clear and text in inputs
+ui.plusBtn.addEventListener('click', function () {
+  // clear location input
+  ui.locationInput.value = '';
+  // clear location object
+  locationApi.clearLocationObject();
+});
+
 // event listener for location list in side menu
 ui.locationsContainer.addEventListener('click', function (e) {
   // check clicked target was a location item
@@ -76,21 +102,30 @@ ui.locationsContainer.addEventListener('click', function (e) {
 });
 
 // Event listener for autocomplete location
-locationApi.placesAutocomplete.on('change', (e) => {
+locationApi.placesAutocomplete.on('change', async (e) => {
+  // get url from upsplash
+  const photoUrl = await background.getPhoto(e.suggestion.country);
+  // create location object
   const location = {
     id: Date.now().toString(),
     name: e.suggestion.name,
     coordinates: e.suggestion.latlng,
     country: e.suggestion.country,
+    url: photoUrl,
   };
-  locationApi.locationObject = location;
+  // Set location object
+  locationApi.setLocationObject(location);
 });
 
 // Event Listener for add location btn in new location modal
 ui.addLocationBtn.addEventListener('click', function () {
   // check if a location has been selected show alert and return
   if (!locationApi.locationObject) {
-    ui.hideShowAlert(ui.locationInput);
+    ui.hideShowAlert();
+    // set alert to disappear after 3 seconds
+    setTimeout(function () {
+      ui.hideShowAlert();
+    }, 3000);
     return;
   }
   // if yes add location and save local storage
@@ -108,4 +143,6 @@ ui.addLocationBtn.addEventListener('click', function () {
   $('#newLocationModal').modal('hide');
   // close side menu
   ui.openCloseSideMenu();
+  // clear location object info
+  locationApi.clearLocationObject();
 });

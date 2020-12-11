@@ -10,9 +10,13 @@ class UI {
     this.closeIcon = document.querySelector('.close-icon');
     this.mainSection = document.querySelector('.main');
     this.overlay = document.querySelector('.overlay');
+    this.plusBtn = document.querySelector('.plus-icon');
+    this.deleteBtn = document.querySelector('.delete-icon');
 
     //query selectors for page navigation
-    this.pageNavigationItems = Array.from(document.querySelectorAll('.page-navigation-item'));
+    this.pageNavigationItems = Array.from(
+      document.querySelectorAll('.page-navigation-item')
+    );
     this.pageNavigation = document.querySelector('.page-navigation');
 
     // Query selectors for page one of weather display
@@ -38,6 +42,9 @@ class UI {
     // New location modal selectors
     this.addLocationBtn = document.querySelector('#add-location-btn');
     this.locationInput = document.querySelector('#location-input');
+    this.invalidFeedback = document.querySelector('.invalid-feedback');
+    // Delete modal query selectores
+    this.confirmDeleteBtn = document.querySelector('#confirm-delete-btn');
   }
   // FUNCTION TO OPEN AND CLOSE SIDE MENU
   openCloseSideMenu() {
@@ -48,8 +55,9 @@ class UI {
     element.innerHTML = '';
   }
   // FUNCTION TO HIDE AND SHOW ALERT
-  hideShowAlert(element) {
-    element.classList.toggle('is-invalid');
+  hideShowAlert() {
+    this.locationInput.classList.toggle('is-invalid');
+    this.invalidFeedback.classList.toggle('d-block');
   }
   // FUNCTION TO RENDER SIDE MENU
   renderSideMenu() {
@@ -79,6 +87,12 @@ class UI {
 
   // FUNCTION TO RENDER WEATHER TO DISPLAY
   async renderWeather(weatherData) {
+    // hide the delete button if id is one to ensure the default london cant be deleted
+    if (storage.selectedLocationId == '1') {
+      this.deleteBtn.classList.add('d-none');
+    } else {
+      this.deleteBtn.classList.remove('d-none');
+    }
     // get current location
     const location = storage.findSelectedLocation();
 
@@ -98,9 +112,9 @@ class UI {
     this.location.textContent = `${location.name}, ${location.country}`;
     // SET BACKGROUND IMAGE
     // get country name of location
-    const country = location.country.replace(/ /g, '_') + '_landscape';
+    const country = location.country.replace(/ /g, '_');
     // set background
-    this.setBackground(country);
+    this.setBackground(location.url);
     // RENDER ICON
     this.currentWeatherIcon.src = `./images/animated/${weatherData.current.weather[0].icon}.svg`;
     // RENDER DESCRIPTION
@@ -139,7 +153,7 @@ class UI {
     }
 
     // SECOND PAGE OF RENDER
-    // set time 
+    // set time
     this.time.textContent = format(
       utcToZonedTime(
         fromUnixTime(weatherData.current.dt),
@@ -200,10 +214,7 @@ class UI {
       this.hourlyWeatherRow.appendChild(div);
     }
   }
-  async setBackground(country) {
-    // get url from upsplash
-    const response = await background.getPhoto(country);
-    const url = response.response.results[0].urls.regular;
+  async setBackground(url) {
     // set background url
     this.mainSection.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
      url(${url})`;

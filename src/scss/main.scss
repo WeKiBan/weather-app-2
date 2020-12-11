@@ -5,6 +5,10 @@
   opacity: 0.9;
 }
 
+.ap-icon-pin {
+  display: none;
+}
+
 /* Background color set on body */
 body {
   height: 100vh;
@@ -12,6 +16,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: 'Montserrat', sans-serif !important;
+  user-select: none;
 }
 
 /* Wrapper so overflow hidden works on mobile devices */
@@ -69,7 +74,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 100%;
+    width:100%;
+    max-width:350px;
     height: 60%;
   }
   .weather-data-item {
