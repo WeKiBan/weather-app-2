@@ -9,6 +9,9 @@ import { locationApi } from './locationsApi';
 import { ui } from './ui.js';
 import { storage } from './storage.js';
 
+// lock screen orientation
+screen.orientation.lock('portrait');
+
 // ON PAGE LOAD RENDER render initial weather
 document.addEventListener('DOMContentLoaded', async function () {
   ui.renderSideMenu();
