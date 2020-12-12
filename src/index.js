@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 window.mySwipe = new Swipe(document.getElementById('slider'), {
   startSlide: 0,
   continuous: false,
+  draggable: true,
   // callback function to change state of navigation dots
   callback: function (index, elem, dir) {
     // remove active class from both dots

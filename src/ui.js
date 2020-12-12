@@ -216,8 +216,8 @@ class UI {
   }
   async setBackground(url) {
     // set background url
-    this.mainSection.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-     url(${url})`;
+    document.body.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(${url})`;
   }
 }
 
