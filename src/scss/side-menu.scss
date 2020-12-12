@@ -9,7 +9,7 @@
   background-color: rgba(255, 255, 255, 0.164);
   transform: translateX(-100%);
   transition: ease-in-out 0.3s;
-  z-index:1000;
+  z-index: 1000;
   .close-icon {
     position: absolute;
     top: 1.3rem;
@@ -64,6 +64,9 @@
   }
   .hamburger-icon {
     display: none;
+  }
+  .wrapper {
+    transform: translateX(250px);
   }
   .overlay {
     display: block;

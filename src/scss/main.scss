@@ -12,6 +12,8 @@
 
 /* Background color set on body */
 body {
+  display: flex;
+  justify-content: center;
   height: 100vh;
   margin: 0;
   background-repeat: no-repeat;
@@ -36,8 +38,8 @@ body {
   width: 100vw;
   position: relative;
   overflow: hidden;
-  margin: auto;
   max-width: 500px;
+  transition: ease-in-out 0.3s;
 }
 
 /* Main container for content */
@@ -47,10 +49,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  margin: auto;
   height: 100vh;
-  transition: ease-in-out 0.3s;
-  
   .delete-icon {
     position: absolute;
     top: 1.3rem;
@@ -72,7 +71,7 @@ body {
   .daily-weather-container {
     width: 100%;
   }
-  
+
   .daily-weather-item {
     display: flex;
     flex-direction: column;
