@@ -1,9 +1,8 @@
-// module imports
 import { storage } from './storage.js';
 
 class Weather {
   constructor() {
-    this.weatherApiToken = '2e44188ae7e877bf4fe23dac83d52bae';
+    this.weatherApiToken = process.env.WEATHER_API;
   }
   async fetchWeather() {
     const location = storage.findSelectedLocation();

@@ -24,6 +24,7 @@
     "bootstrap": "^4.5.3",
     "css-loader": "^5.0.1",
     "date-fns-tz": "^1.0.12",
+    "dotenv-webpack": "^7.0.2",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
     "places.js": "^1.19.0",
     "swipejs": "^2.2.18",
     "unsplash-js": "^7.0.1"

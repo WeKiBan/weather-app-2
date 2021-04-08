@@ -2,8 +2,8 @@ class Location {
   constructor() {
     this.locationObject;
     this.placesAutocomplete = places({
-      appId: 'plY0MA3QXGNO',
-      apiKey: 'b1739edb24aa543c66a07bbf67e452bb',
+      appId: process.env.APP_ID,
+      apiKey: process.env.LOCATIONS_API_KEY,
       container: document.querySelector('#location-input'),
     });
   }
